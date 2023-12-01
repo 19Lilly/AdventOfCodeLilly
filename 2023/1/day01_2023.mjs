@@ -15,7 +15,7 @@ function part1() {
         : Number(item[0] + item[item.length - 1])
     )
     .reduce((acc, curr) => acc + curr, 0);
-  // console.log(input1);
+  console.log(input1);
 }
 
 function part2() {
