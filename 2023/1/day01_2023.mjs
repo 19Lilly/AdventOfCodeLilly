@@ -9,11 +9,7 @@ function part1() {
   const input1 = lines
     .map((string) => string.split(""))
     .map((arr) => arr.filter((item) => item.match(/\d+/g)))
-    .map((item) =>
-      item.length === 1
-        ? Number(item[0] + item[0])
-        : Number(item[0] + item[item.length - 1])
-    )
+    .map((item) => Number(item[0] + item[item.length - 1]))
     .reduce((acc, curr) => acc + curr, 0);
   console.log(input1);
 }
@@ -25,6 +21,8 @@ function part2() {
         .replace(/oneight/g, "oneeight")
         .replace(/twone/g, "twoone")
         .replace(/eightwo/g, "eighttwo")
+        .replace(/eightree/g, "eighttree")
+        .replace(/threeight/g, "threeeight")
         .replace(/zero/g, 0)
         .replace(/one/g, 1)
         .replace(/two/g, 2)
@@ -38,11 +36,7 @@ function part2() {
     )
     .map((string) => string.split(""))
     .map((arr) => arr.filter((item) => item.match(/\d+/g)))
-    .map((item) =>
-      item.length === 1
-        ? Number(item[0] + item[0])
-        : Number(item[0] + item[item.length - 1])
-    )
+    .map((item) => Number(item[0] + item[item.length - 1]))
     .reduce((acc, curr) => acc + curr, 0);
 
   console.log(input2);
