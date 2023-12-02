@@ -21,11 +21,9 @@ function part1() {
   result
     .map((item) => {
       item.map((item) => {
-        item[0] > 12 && item[1] === "red"
-          ? item.push(false)
-          : item[0] > 13 && item[1] === "green"
-          ? item.push(false)
-          : item[0] > 14 && item[1] === "blue"
+        (item[0] > 12 && item[1] === "red") ||
+        (item[0] > 13 && item[1] === "green") ||
+        (item[0] > 14 && item[1] === "blue")
           ? item.push(false)
           : item.push(true);
       });
