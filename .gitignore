@@ -1,2 +1,2 @@
-/text.txt
+*.txt
 echo ".txt" >> .gitignore
