@@ -1,2 +1,5 @@
 *.txt
+# Dependency directories
+node_modules/
+jspm_packages/
 echo ".txt" >> .gitignore
