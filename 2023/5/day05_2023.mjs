@@ -41,12 +41,10 @@ const seedTo = [
     .map((item) => item.map((item) => Number(item))),
 ];
 
-
-
 const isInRange = (destination, startNumber, numberOfItem, item) =>
   item >= startNumber && item <= startNumber + numberOfItem - 1 ? true : false;
 
-/*   const inputNumber = [79, 14, 55, 13];
+/*  const inputNumber = [79, 14, 55, 13];
   const seedTo = [
     [
       [50, 98, 2],
@@ -82,23 +80,31 @@ const isInRange = (destination, startNumber, numberOfItem, item) =>
     ],
   ]; */
 
-  function getFinalNumber(number) {
-    for (let i = 0; i < seedTo.length; i++) {
-      let result = seedTo[i].map((item) => {
-        return isInRange(item[0], item[1], item[2], number);
-      });
-      let index = result.indexOf(true);
-      if (result.some((item) => item === true)) {
-        number = seedTo[i][index][0] + (number - seedTo[i][index][1]);
-      } else {
-        number;
-      }
+function getFinalNumber(number) {
+  for (let i = 0; i < seedTo.length; i++) {
+    let result = seedTo[i].map((item) => {
+      return isInRange(item[0], item[1], item[2], number);
+    });
+    let index = result.indexOf(true);
+    if (result.some((item) => item === true)) {
+      number = seedTo[i][index][0] + (number - seedTo[i][index][1]);
+    } else {
+      number;
     }
-    return number;
+  }
+  return number;
 }
-  
-const res = inputNumber.map((item) => getFinalNumber(item));
-console.log(res.sort((a,b) => a-b))
 
+const res = inputNumber.map((item) => getFinalNumber(item));
+// console.log(res.sort((a, b) => a - b));
+console.log(res);
+
+console.log(getFinalNumber(852082783));
+
+const arrayRange = (start, stop, step) =>
+  Array.from(
+    { length: (stop - start) / step + 1 },
+    (value, index) => start + index * step
+  );
 
 //template using from https://github.com/tpatel/advent-of-code-2022/blob/main/template.mjs
