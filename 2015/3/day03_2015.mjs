@@ -5,13 +5,9 @@ const input = readFileSync('day03_2015.txt', { encoding: 'utf-8' }) // read day?
   .trim() // Remove starting/ending whitespace
   .split(''); // Split on newline
 //.map(Number(item)) // convert string to number
-
-console.log(input);
-
-function part1() {
-  //do something here
+const pointsOfDelivery = array => {
   let startPoint = [0, 0];
-  const arr1 = input.map(item => {
+  return array.map(item => {
     switch (item) {
       case '<':
         startPoint = [startPoint[0] - 1, startPoint[1]];
@@ -28,15 +24,29 @@ function part1() {
     }
     return startPoint;
   });
-  const uniqueItems = Array.from(
-    new Set(arr1.map(item => JSON.stringify(item)))
-  ).map(item => JSON.parse(item));
+};
 
-  console.log(uniqueItems.length);
+const findUniqueHouses = array => {
+  return Array.from(new Set(array.map(item => JSON.stringify(item)))).map(
+    item => JSON.parse(item)
+  );
+};
+
+function part1() {
+  //do something here
+
+  const arr1 = pointsOfDelivery(input);
+  const uniqueItems = findUniqueHouses(arr1);
+  // console.log(uniqueItems.length);
 }
 
 function part2() {
-  //do something here
+  const santaArray = input.filter((_, index) => index % 2 === 0);
+  const roboSantaArray = input.filter((_, index) => index % 2 !== 0);
+  const santasHouses = pointsOfDelivery(santaArray);
+  const roboSantaHouses = pointsOfDelivery(roboSantaArray);
+  const allHouses = [...santasHouses, ...roboSantaHouses];
+  console.log(findUniqueHouses(allHouses).length);
 }
 
 part1();
