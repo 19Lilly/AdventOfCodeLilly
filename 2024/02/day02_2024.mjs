@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 
-const input = readFileSync('day02_2024_testData.txt', { encoding: 'utf-8' }) // read day??.txt content
+const input = readFileSync('day02_2024.txt', { encoding: 'utf-8' }) // read day??.txt content
   .replace(/\r/g, '') // remove all \r characters to avoid issues on Windows
   .trim() // Remove starting/ending whitespace
   .split('\n')
@@ -20,25 +20,28 @@ function part1() {
 
   const isBetweenOneAndThree = arr => {
     return arr.every(item => {
-      return 3 >= item > 0;
+      return 3 >= item && item > 0;
     });
   };
 
   const isAllItemIncreaseOrDecrease = arr => {
     let arrLength;
+    // console.log(arr);
     const arr1 = arr
       .map((_, index, array) => {
         arrLength = array.length - 1;
-        if (index <= array.length) {
+        if (index < array.length) {
           return array[index] < array[index + 1];
         }
       })
       .splice(0, arrLength);
-    console.log(arr1);
 
-    return (
+    const arr2 =
       arr1.every(item => item === true) || arr1.every(item => item === false)
-    );
+        ? true
+        : false;
+
+    return arr2;
   };
 
   console.log(
@@ -46,8 +49,8 @@ function part1() {
       .map(array => {
         const differences = difference(array);
 
-        return isAllItemIncreaseOrDecrease(array) &&
-          isBetweenOneAndThree(differences)
+        return isBetweenOneAndThree(differences) &&
+          isAllItemIncreaseOrDecrease(array)
           ? 1
           : 0;
       })
